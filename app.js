@@ -91,6 +91,13 @@ function cadastrarDespesa(){
 
         $('#modalRegistroDespesa').modal('show')
 
+        ano.value = ''
+        mes.value = ''
+        dia.value = ''
+        tipo.value = ''
+        descricao.value = ''
+        valor.value = ''
+
     } else {
 
         document.getElementById('modal-titulo').innerHTML = 'Erro na inclusão do registro'
@@ -109,6 +116,18 @@ function carregaListaDespesas(){
 
     despesas = bd.recuperarTodosRegistros()
 
-    console.log(despesas)
+    let listaDespesas = document.getElementById('listaDespesas')
+
+    despesas.forEach(function(d){
+
+        let linha = listaDespesas.insertRow()
+
+        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}`
+        linha.insertCell(1).innerHTML = d.tipo
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = d.valor
+
+    })
+
 }
 
